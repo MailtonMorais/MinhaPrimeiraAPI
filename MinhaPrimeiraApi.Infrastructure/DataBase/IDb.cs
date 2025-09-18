@@ -12,6 +12,11 @@ namespace MinhaPrimeiraApi.Infrastructure.DataBase
         void Create(Client client);
         List<Client> GetAll();
         Client GetByCpf(string cpf);
+        bool Delete(Client client);
+        void Update(Client client);
+
 
     }
+
+
 }

@@ -22,7 +22,10 @@ namespace MinhaPrimeiraApi.Infrastructure.Repository
             => _db.GetAll();
         public Client GetByCpf(string cpf)
             => _db.GetByCpf(cpf);
-
+        public bool Delete (Client client)
+            => _db.Delete(client);
+        public void Update(Client client)
+            => _db.Update(client);
 
     }
 }

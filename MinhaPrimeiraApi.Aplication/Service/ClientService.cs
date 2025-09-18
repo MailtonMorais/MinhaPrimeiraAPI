@@ -44,5 +44,22 @@ namespace MinhaPrimeiraApi.Aplication.Service
             return clientDto;
         }
 
+        public bool Delete (ClientDto clientDto)
+        {   var client = _clientRepository.GetByCpf(clientDto.Cpf);
+            if (client == null) return false;
+            return _clientRepository.Delete(client);
+        }
+
+        public void Update(ClientDto clientDto, string cpf)
+        {
+            var client = _clientRepository.GetByCpf(cpf);
+            if (client == null) return;
+            client.Name = clientDto.Nome;
+            client.Cpf = clientDto.Cpf;
+            client.DataDeNascimento = clientDto.Nascimento;
+            _clientRepository.Delete(client);
+            _clientRepository.Update(client);
+
+        }
     }
 }

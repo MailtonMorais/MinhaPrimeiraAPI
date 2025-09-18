@@ -44,5 +44,27 @@ namespace MinhaPrimeiraApi.API.Controllers
             return Ok(client);
 
         }
+        [HttpDelete]
+        public IActionResult Delete(ClientDto client)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest("Cliente inválido");
+            var result = _clientService.Delete(client);
+            if (!result)
+                return NotFound("Cliente não encontrado");
+            return Ok("Cliente deletado com sucesso");
+        }
+
+        [HttpPut("{cpf}")]
+        public IActionResult Update(ClientDto client, string cpf)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest("Cliente inválido");
+            var existingClient = _clientService.GetByCpf(cpf);
+            if (existingClient == null)
+                return NotFound("Cliente não encontrado");
+            _clientService.Update(client, cpf);
+            return Ok("Cliente atualizado com sucesso");
+        }
     }
 }
