@@ -11,21 +11,22 @@ namespace MinhaPrimeiraApi.Infrastructure.Repository
 {
     public class ClientRpository : IClientRepository
     {
-        private readonly IDb _db;
-        public ClientRpository(IDb db)  
+        private readonly IBancoDeDados _db;
+        public ClientRpository(IBancoDeDados db)  
         {
            _db = db;
         }
         public void Create(Client client)
-            => _db.Create(client);
+            => _db.CreateClient(client);
         public List<Client> GetAll()
-            => _db.GetAll();
+            => _db.GetAllClient();
         public Client GetByCpf(string cpf)
-            => _db.GetByCpf(cpf);
+            => _db.GetByCpfClient(cpf);
         public bool Delete (Client client)
-            => _db.Delete(client);
+            => _db.DeleteClient(client);
         public void Update(Client client)
-            => _db.Update(client);
+            => _db.UpdateClient(client);
+
 
     }
 }
